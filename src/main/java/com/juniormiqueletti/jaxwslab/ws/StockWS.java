@@ -1,5 +1,6 @@
 package com.juniormiqueletti.jaxwslab.ws;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.jws.WebMethod;
@@ -7,6 +8,8 @@ import javax.jws.WebResult;
 import javax.jws.WebService;
 
 import com.juniormiqueletti.jaxwslab.dao.ItemDAO;
+import com.juniormiqueletti.jaxwslab.domain.Filter;
+import com.juniormiqueletti.jaxwslab.domain.Filters;
 import com.juniormiqueletti.jaxwslab.domain.Item;
 import com.juniormiqueletti.jaxwslab.domain.ItemList;
 
@@ -17,9 +20,12 @@ public class StockWS {
 	
 	@WebMethod(operationName = "allItens")
 	@WebResult(name="items")
-	public ItemList findAll(){
+	public ItemList findAll(Filters filters){
 		System.out.println("findAll");
-		List<Item> items = dao.findAll();
-		return new ItemList(items);
+		
+		List<Filter> list = filters.getList();
+		ArrayList<Item> allItemsListed = dao.allItems(list);
+		
+		return new ItemList(allItemsListed);
 	}
 }
