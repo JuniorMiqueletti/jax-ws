@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 
@@ -20,7 +21,7 @@ public class StockWS {
 	
 	@WebMethod(operationName = "allItens")
 	@WebResult(name="items")
-	public ItemList findAll(Filters filters){
+	public ItemList findAll(@WebParam(name="filters") Filters filters){
 		System.out.println("findAll");
 		
 		List<Filter> list = filters.getList();
