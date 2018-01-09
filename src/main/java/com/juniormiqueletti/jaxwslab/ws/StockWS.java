@@ -8,6 +8,7 @@ import javax.jws.WebService;
 
 import com.juniormiqueletti.jaxwslab.dao.ItemDAO;
 import com.juniormiqueletti.jaxwslab.domain.Item;
+import com.juniormiqueletti.jaxwslab.domain.ItemList;
 
 @WebService
 public class StockWS {
@@ -15,10 +16,10 @@ public class StockWS {
 	private ItemDAO dao = new ItemDAO();
 	
 	@WebMethod(operationName = "allItens")
-	@WebResult(name="item")
-	public List<Item> findAll(){
+	@WebResult(name="items")
+	public ItemList findAll(){
 		System.out.println("findAll");
-		List<Item> itens = dao.findAll();
-		return itens;
+		List<Item> items = dao.findAll();
+		return new ItemList(items);
 	}
 }
