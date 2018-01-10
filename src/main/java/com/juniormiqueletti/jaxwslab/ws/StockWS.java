@@ -7,6 +7,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
+import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
 
 import com.juniormiqueletti.jaxwslab.dao.ItemDAO;
@@ -22,7 +23,8 @@ public class StockWS {
 	
 	@WebMethod(operationName = "allItems")
 	@WebResult(name="items")
-	@ResponseWrapper(localName = "ns2Items")
+	@RequestWrapper(localName = "listItems")
+	@ResponseWrapper(localName = "itemsResponse")
 	public ItemList findAll(@WebParam(name="filters") Filters filters){
 		System.out.println("findAll");
 		
