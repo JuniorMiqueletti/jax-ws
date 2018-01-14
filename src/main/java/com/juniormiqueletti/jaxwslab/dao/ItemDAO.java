@@ -56,4 +56,8 @@ public class ItemDAO {
 	private boolean itemWithName(Item item, String name) {
 		return item.getName().contains(name);
 	}
+
+	public void register(Item item) {
+		ITEMS.put(item.getCode(), item);
+	}
 }

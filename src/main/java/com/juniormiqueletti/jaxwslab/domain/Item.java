@@ -1,25 +1,39 @@
 package com.juniormiqueletti.jaxwslab.domain;
 
-public class Item {
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
-	private String codigo;
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement
+public class Item {
+	
+	@XmlElement(required=true)
+	private String code;
+	@XmlElement(required=true)
 	private String name;
+	@XmlElement(required=true)
 	private String type;
+	@XmlElement(required=true)
 	private int quantity;
 
-	public Item(String codigo, String name, String type, int quantity) {
-		this.codigo = codigo;
+	public Item() {
+	}
+
+	public Item(String code, String name, String type, int quantity) {
+		this.code = code;
 		this.name = name;
 		this.type = type;
 		this.quantity = quantity;
 	}
 
-	public String getCodigo() {
-		return codigo;
+	public String getCode() {
+		return code;
 	}
 
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public String getName() {
