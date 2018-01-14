@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://ws.jaxwslab.juniormiqueletti.com/" xmlns:tns="http://ws.jaxwslab.juniormiqueletti.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="AuthorizatioFault" nillable="true" type="tns:infoFault"/>
+
+  <xs:element name="filters" type="tns:filters"/>
+
+  <xs:element name="item" type="tns:item"/>
+
+  <xs:element name="itemList" type="tns:itemList"/>
+
+  <xs:element name="itemsResponse" type="tns:itemsResponse"/>
+
+  <xs:element name="listItems" type="tns:listItems"/>
+
+  <xs:element name="registerItem" type="tns:registerItem"/>
+
+  <xs:element name="registerItemResponse" type="tns:registerItemResponse"/>
+
+  <xs:element name="tokenUsuario" nillable="true" type="tns:userToken"/>
+
+  <xs:complexType name="listItems">
+    <xs:sequence>
+      <xs:element name="filters" type="tns:filters" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="filters">
+    <xs:sequence>
+      <xs:element name="filter" type="tns:filter" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="filter">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+      <xs:element name="type" type="tns:itemType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="itemsResponse">
+    <xs:sequence>
+      <xs:element name="items" type="tns:itemList" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="itemList">
+    <xs:sequence>
+      <xs:element name="item" type="tns:item" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="item">
+    <xs:sequence>
+      <xs:element name="code" type="xs:string"/>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="type" type="xs:string"/>
+      <xs:element name="quantity" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="registerItem">
+    <xs:sequence>
+      <xs:element name="item" type="tns:item" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="userToken">
+    <xs:sequence>
+      <xs:element name="token" type="xs:string"/>
+      <xs:element name="expirationDate" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="registerItemResponse">
+    <xs:sequence>
+      <xs:element name="item" type="tns:item" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="infoFault">
+    <xs:sequence>
+      <xs:element name="errorDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="message" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="itemType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Book"/>
+      <xs:enumeration value="Smartphone"/>
+      <xs:enumeration value="Tablet"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+
