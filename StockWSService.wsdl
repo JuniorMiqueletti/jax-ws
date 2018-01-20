@@ -6,48 +6,39 @@
       <xsd:import namespace="http://ws.jaxwslab.juniormiqueletti.com/" schemaLocation="StockWSService_schema1.xsd"/>
     </xsd:schema>
   </types>
-  <message name="allItems">
-    <part name="parameters" element="tns:listItems"/>
-  </message>
-  <message name="allItemsResponse">
-    <part name="parameters" element="tns:itemsResponse"/>
-  </message>
   <message name="registerItem">
-    <part name="parameters" element="tns:registerItem"/>
     <part name="tokenUsuario" element="tns:tokenUsuario"/>
+    <part name="item" element="tns:item"/>
   </message>
   <message name="registerItemResponse">
-    <part name="result" element="tns:registerItemResponse"/>
+    <part name="item" element="tns:item"/>
   </message>
   <message name="AuthorizatioFault">
     <part name="fault" element="tns:AuthorizatioFault"/>
   </message>
+  <message name="allItems">
+    <part name="filters" element="tns:filters"/>
+  </message>
+  <message name="allItemsResponse">
+    <part name="items" element="tns:items"/>
+  </message>
   <portType name="StockWS">
-    <operation name="allItems">
-      <input wsam:Action="http://ws.jaxwslab.juniormiqueletti.com/StockWS/allItemsRequest" message="tns:allItems"/>
-      <output wsam:Action="http://ws.jaxwslab.juniormiqueletti.com/StockWS/allItemsResponse" message="tns:allItemsResponse"/>
-    </operation>
-    <operation name="registerItem" parameterOrder="parameters tokenUsuario">
+    <operation name="registerItem" parameterOrder="tokenUsuario item">
       <input wsam:Action="http://ws.jaxwslab.juniormiqueletti.com/StockWS/registerItemRequest" message="tns:registerItem"/>
       <output wsam:Action="http://ws.jaxwslab.juniormiqueletti.com/StockWS/registerItemResponse" message="tns:registerItemResponse"/>
       <fault message="tns:AuthorizatioFault" name="AuthorizatioFault" wsam:Action="http://ws.jaxwslab.juniormiqueletti.com/StockWS/registerItem/Fault/AuthorizationException"/>
     </operation>
+    <operation name="allItems">
+      <input wsam:Action="http://ws.jaxwslab.juniormiqueletti.com/StockWS/allItemsRequest" message="tns:allItems"/>
+      <output wsam:Action="http://ws.jaxwslab.juniormiqueletti.com/StockWS/allItemsResponse" message="tns:allItemsResponse"/>
+    </operation>
   </portType>
   <binding name="StockWSPortBinding" type="tns:StockWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-    <operation name="allItems">
-      <soap:operation soapAction=""/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
-    </operation>
     <operation name="registerItem">
       <soap:operation soapAction=""/>
       <input>
-        <soap:body use="literal" parts="parameters"/>
+        <soap:body use="literal" parts="item"/>
         <soap:header message="tns:registerItem" part="tokenUsuario" use="literal"/>
       </input>
       <output>
@@ -56,6 +47,15 @@
       <fault name="AuthorizatioFault">
         <soap:fault name="AuthorizatioFault" use="literal"/>
       </fault>
+    </operation>
+    <operation name="allItems">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
     </operation>
   </binding>
   <service name="StockWSService">

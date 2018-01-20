@@ -9,21 +9,9 @@
 
   <xs:element name="itemList" type="tns:itemList"/>
 
-  <xs:element name="itemsResponse" type="tns:itemsResponse"/>
-
-  <xs:element name="listItems" type="tns:listItems"/>
-
-  <xs:element name="registerItem" type="tns:registerItem"/>
-
-  <xs:element name="registerItemResponse" type="tns:registerItemResponse"/>
+  <xs:element name="items" nillable="true" type="tns:itemList"/>
 
   <xs:element name="tokenUsuario" nillable="true" type="tns:userToken"/>
-
-  <xs:complexType name="listItems">
-    <xs:sequence>
-      <xs:element name="filters" type="tns:filters" minOccurs="0"/>
-    </xs:sequence>
-  </xs:complexType>
 
   <xs:complexType name="filters">
     <xs:sequence>
@@ -35,12 +23,6 @@
     <xs:sequence>
       <xs:element name="name" type="xs:string" minOccurs="0"/>
       <xs:element name="type" type="tns:itemType" minOccurs="0"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="itemsResponse">
-    <xs:sequence>
-      <xs:element name="items" type="tns:itemList" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -59,22 +41,10 @@
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="registerItem">
-    <xs:sequence>
-      <xs:element name="item" type="tns:item" minOccurs="0"/>
-    </xs:sequence>
-  </xs:complexType>
-
   <xs:complexType name="userToken">
     <xs:sequence>
       <xs:element name="token" type="xs:string"/>
       <xs:element name="expirationDate" type="xs:string"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="registerItemResponse">
-    <xs:sequence>
-      <xs:element name="item" type="tns:item" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
